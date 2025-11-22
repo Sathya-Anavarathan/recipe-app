@@ -3,7 +3,7 @@ import express from 'express';
 
 // import { createRecipe } from "../controllers/recipeController.js";
 
-import { createRecipe, getAllRecipes ,getRecipeById} from "../controllers/recipeController.js";
+import { createRecipe, getAllRecipes, getRecipeById, updateRecipeById, deleteRecipeById } from "../controllers/recipeController.js";
 import {  verifyByrecipe } from '../middlewares/recipeMiddleware.js';
 
 
@@ -27,14 +27,11 @@ router.get("/", getAllRecipes);
 router.get("/:id", getRecipeById,verifyByrecipe);
 
 // updateRecipe
-router.patch("/:id",verifyByrecipe,(req,res)=>{
-    res.send(`recipe with id ${req.params.id} has been updated`);
-});
+router.patch("/:id", verifyByrecipe, updateRecipeById);
 
 // deleteRecipe
 
-router.delete("/:id",verifyByrecipe,(req,res)=>{
-    res.send(`recipe with id ${req.params.id} has been deleted`);
-});
+router.delete("/:id",verifyByrecipe,deleteRecipeById);
+
 
 export default router

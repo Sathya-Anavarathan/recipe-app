@@ -73,7 +73,7 @@ export const updateRecipeById = async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
-    const recipe = await Recipe.findByIdAndUpdate(id, updates, { new: true });
+    const recipe = await Recipe.findByIdAndUpdate(id, updates, { new: true , runValidators: true });
     if (!recipe) {
       return res.status(404).json({
         status: "error",
@@ -100,10 +100,11 @@ export const deleteRecipeById = async (req, res) => {
     const { id } = req.params;
     const recipe = await Recipe.findByIdAndDelete(id);
     if (!recipe) {
-      return res.status(404).json({
+     return res.status(404).json({
         status: "error",
         message: "Recipe not found",
       });
+       
     }
     res.status(200).json({
       status: "success",
