@@ -1,2 +1,0 @@
-db_username="sathyaanavarathan10_db_user"
-db_password="Nem16hoc6WIUusdY"
