@@ -1,15 +1,28 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const mongoDbURI="mongodb+srv://sathyaanavarathan10_db_user:Nem16hoc6WIUusdY@recpie1.doxlsfc.mongodb.net/Recpie1?appName=Recpie1"
-
-
-
+import express from "express";
 
 
-export const connectDB=()=>{
-    mongoose.connect(mongoDbURI)
-    .then(()=>console.log("MongoDB connected"))
-    .catch((err)=>console.log(err))
+dotenv.config();
+
+
+const app=express
+const PORT =process.env.PORT
+
+
+
+
+const connectDB=()=>{
+    // console.log(process.env.db_username,process.env.db_password,process.env.db_name)
+const mongoDbURI=`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@recpie1.doxlsfc.mongodb.net/${process.env.DB_NAME} ?appName=Recpie1`
+mongoose
+.connect(mongoDbURI)
+.then(()=>console.log("MongoDB connected"))
+.catch((error)=>console.log("connection error",error))
 }
+
+
+
 
 export default connectDB;
